@@ -1,0 +1,12 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "h-lab-page": {
+      "appLocation": ".",
+      "outputLocation": "dist",
+      "appBuildCommand": "pnpm run build",
+      "run": "pnpm preview",
+      "appDevserverUrl": "https://localhost:4321"
+    }
+  }
+}

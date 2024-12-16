@@ -7,8 +7,8 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://charlie-to.github.io",
-  base: "/h-lab-page",
+  site: "https://white-river-0596dd700-preview.eastasia.4.azurestaticapps.net",
+  base: "/",
   output: "static",
   integrations: [icon(), tailwind()],
   i18n: {
