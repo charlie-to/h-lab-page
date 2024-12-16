@@ -1,0 +1,48 @@
+---
+import {
+  getAllPosts,
+  getRankedPosts,
+  getAllTags,
+  getNumberOfPages,
+  getAllBlocksByBlockId,
+} from '@/lib/notion/client.ts'
+import { postTagFilter } from '@/lib/filter-helpers.ts'
+import Layout from '../layouts/NavLayout.astro'
+import PostBodySlide from '@/components/PostBodySlide.astro'
+
+const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
+  getAllPosts(),
+  getRankedPosts(),
+  getAllTags(),
+  getNumberOfPages(),
+])
+
+// page meta data
+const PageTitle = '研究プロジェクト'
+const PageDescription = '研究プロジェクトの一覧です。'
+const PageTag = 'publications-1'
+
+const posts_research_page = postTagFilter(posts, PageTag).sort(
+  (a, b) => {
+    return a.PageOrder - b.PageOrder
+  }
+)
+---
+
+<Layout title={PageTitle} description={PageDescription} pageTag={PageTag}>
+  <div class="container" slot="main">
+    {
+      posts_research_page.length === 0 ? (
+        <div>
+          <p>投稿がありません</p>
+        </div>
+      ) : (
+        posts_research_page.map((post) => (
+          <div>
+            <PostBodySlide post={post} />
+          </div>
+        ))
+      )
+    }
+  </div>
+</Layout>

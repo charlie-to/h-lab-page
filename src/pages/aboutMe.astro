@@ -1,0 +1,47 @@
+---
+import { NUMBER_OF_POSTS_PER_PAGE } from '../server-constants.ts'
+import {
+  getAllPosts,
+  getRankedPosts,
+  getAllTags,
+  getNumberOfPages,
+  getAllBlocksByBlockId,
+} from '../lib/notion/client.ts'
+import { postTagFilter } from '../lib/filter-helpers.ts'
+import Layout from '../layouts/NavLayout.astro'
+import NoContents from '../components/NoContents.astro'
+import BlogPostsLink from '../components/BlogPostsLink.astro'
+import BlogTagsLink from '../components/BlogTagsLink.astro'
+import PostBodySlide from '../components/PostBodySlide.astro'
+import PostCarousel from '../components/PostCarousel.astro'
+
+const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
+  getAllPosts(),
+  getRankedPosts(),
+  getAllTags(),
+  getNumberOfPages(),
+])
+
+// page meta data
+const PageTitle = '細田千尋'
+const PageDescription = '細田千尋の自己紹介です。'
+const PageTag = 'about-me-1'
+
+const posts_tags = postTagFilter(posts, PageTag).sort((a, b) => {
+  return a.PageOrder - b.PageOrder
+})
+---
+
+<Layout title={PageTitle} description={PageDescription} pageTag={PageTag}>
+  <div slot="main">
+    <div class="container">
+      {
+        posts_tags.length === 0 ? (
+          <NoContents />
+        ) : (
+          posts_tags.map((post) => <PostBodySlide post={post} />)
+        )
+      }
+    </div>
+  </div>
+</Layout>

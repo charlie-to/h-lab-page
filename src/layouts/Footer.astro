@@ -1,0 +1,40 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<footer class="bg-base-300 text-base-content">
+  <div class="container footer p-10">
+    <nav>
+      <h6 class="footer-title">研究</h6>
+      <a href="/news/index.html" class="link link-hover">ニュース</a>
+      <a href="/publications/index.html" class="link link-hover">研究業績</a>
+      <a href="/collaboration/index.html" class="link link-hover">産学連携</a>
+      <a href="/lecture/index.html" class="link link-hover">講演</a>
+      <a href="/guideline/index.html" class="link link-hover"
+        >コミュニティガイドライン</a
+      >
+    </nav>
+    <nav>
+      <h6 class="footer-title">メンバー</h6>
+      <a href="/aboutMe/index.html" class="link link-hover">細田千尋</a>
+      <a href="/member/index.html" class="link link-hover">メンバー</a>
+    </nav>
+    <nav>
+      <h6 class="footer-title">Social</h6>
+      <div class="grid grid-flow-col gap-4">
+        <a href="https://www.youtube.com/@chihiro_hosoda_official">
+          <Icon name="mdi:youtube" class="fill-current w-12 h-12" />
+        </a>
+        <a href="https://www.instagram.com/chihiro_hosoda_official/">
+          <Icon name="mdi:instagram" class="fill-current w-12 h-12" />
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="bottom-area text-center text-xs mt-auto w-full py-2">
+    <span>Powered by&nbsp;</span>
+    <a href="https://github.com/otoyo/astro-notion-blog">astro-notion-blog</a>
+    <span>&nbsp;|&nbsp;</span>
+    <span>東北大学情報科学研究科　細田研究室</span>
+  </div>
+</footer>

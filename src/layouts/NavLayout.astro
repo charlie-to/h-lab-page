@@ -1,0 +1,46 @@
+---
+import Layout from "./BaseLayout.astro";
+import { Header } from "@/layouts/Header.astro";
+import Footer from "./Footer.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage: string;
+}
+const {
+  title = "",
+  description = "",
+  path = "/",
+  ogImage = "",
+  pageTag = -1,
+} = Astro.props;
+
+const NavLinks = [
+  [{ label: "ホーム", href: "/index.html" }],
+  [{ label: "研究業績", href: "/publications/index.html" }],
+  [{ label: "産学連携", href: "/collaboration/index.html" }],
+  [
+    { label: "メンバー", href: "/member/index.html" },
+    { label: "細田千尋", href: "/aboutMe/index.html" },
+  ],
+  [{ label: "ニュース", href: "/news/index.html" }],
+  [{ label: "講演", href: "/lecture/index.html" }],
+  [{ label: "お問い合わせ", href: "/contact/index.html" }],
+];
+---
+
+<Layout>
+  <div slot="main">
+    <Header navLinks={NavLinks} />
+    <div class="my-6">
+      <slot name="main" />
+    </div>
+    <div class="w-full content-end">
+      <p class="text-sm text-gray-500 text-end">PageTag:{pageTag}</p>
+    </div>
+    <Footer />
+  </div>
+</Layout>
+

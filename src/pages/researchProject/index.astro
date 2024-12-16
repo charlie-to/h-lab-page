@@ -1,0 +1,45 @@
+---
+import {
+  getAllPosts,
+  getRankedPosts,
+  getAllTags,
+  getNumberOfPages,
+  getAllBlocksByBlockId,
+} from '@/lib/notion/client.ts'
+import { postTagFilter } from '@/lib/filter-helpers.ts'
+import Layout from '../../layouts/NavLayout.astro'
+import PostBodyCard from '../../components/PostBodyCard.astro'
+
+const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
+  getAllPosts(),
+  getRankedPosts(),
+  getAllTags(),
+  getNumberOfPages(),
+])
+
+const posts_research_page = postTagFilter(posts, 'research-page').sort(
+  (a, b) => {
+    return a.PageOrder - b.PageOrder
+  }
+)
+---
+
+<Layout title="研究プロジェクト">
+  <!--TODO: 画像実装-->
+  <div class=""></div>
+  <div class="container" slot="main">
+    {
+      posts_research_page.length === 0 ? (
+        <div>
+          <p>投稿がありません</p>
+        </div>
+      ) : (
+        posts_research_page.map((post) => (
+          <div>
+            <PostBodyCard post={post} />
+          </div>
+        ))
+      )
+    }
+  </div>
+</Layout>

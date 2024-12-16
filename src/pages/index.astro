@@ -1,0 +1,290 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+import {Image} from "astro:assets";
+import People from "./people_demo.jpg";
+import {Icon} from "astro-icon/components"
+
+const NavLinks = [
+    [{label: "ホーム", href: "/index.html"}],
+    [{label: "研究業績", href: "/publications/index.html"}],
+    [{label: "産学連携", href: "/collaboration/index.html"}],
+    [
+        {label: "メンバー", href: "/member/index.html"},
+        {label: "細田千尋", href: "/aboutMe/index.html"},
+    ],
+    [{label: "ニュース", href: "/news/index.html"}],
+    [{label: "講演", href: "/lecture/index.html"}],
+    [{label: "お問い合わせ", href: "/contact/index.html"}],
+];
+
+const posts_top_page = ["test1","test2","test3"];
+---
+
+<Layout>
+    <div slot="main" class="relative">
+        <!--navigation bar-->
+        <div id="nav" class="w-screen bg-white z-[10001] absolute">
+            <!-- <Header navLinks={NavLinks} /> -->
+        </div>
+        <!--steps-->
+        <div
+                class="h-screen w-4 container content-center my-auto z-[10000] absolute"
+        >
+            <div>
+                <ul
+                        class="container my-auto timeline timeline-compact timeline-vertical"
+                >
+                    <li>
+                        <div class="timeline-middle">
+                            <a href="#" class="step-link">
+                                 <Icon name="mdi:checkbox-blank-circle" size="20" />
+                            </a>
+                        </div>
+                        <div class="timeline-end h-12"></div>
+                        <hr/>
+                    </li>
+                    <li>
+                        <hr/>
+                        <div class="timeline-middle">
+                            <a href="#" class="step-link">
+                                 <Icon name="mdi:checkbox-blank-circle" size="20" />
+                            </a>
+                        </div>
+                        <div class="timeline-end h-12"></div>
+                        <hr/>
+                    </li>
+                     {
+                       posts_top_page.length === 0 ? (
+                         <li>
+                           <hr />
+                           <div class="timeline-middle">
+                             <a href="#" class="step-link">
+                               <Icon name="mdi:checkbox-blank-circle" size="20" />
+                             </a>
+                           </div>
+                           <div class="timeline-end h-12" />
+                           <hr />
+                         </li>
+                       ) : (
+                         posts_top_page.map((post, index) => (
+                           <li>
+                             <hr />
+                             <div class="timeline-middle">
+                               <a href="#" class="step-link">
+                                 <Icon name="mdi:checkbox-blank-circle" size="20" />
+                               </a>
+                             </div>
+                             <div class="timeline-end h-12" />
+                             {index !== posts_top_page.length - 1 ? <hr /> : ""}
+                           </li>
+                         ))
+                       )
+                     }
+                </ul>
+            </div>
+        </div>
+        <!--hover links-->
+        <!--contents-->
+        <div class="scroll-container absolute">
+            <section class="slide bg-base-100">
+                <div class="h-full mx-auto my-auto py-12 relative">
+                    <div class="w-full h-full flex absolute">
+                        <Image
+                                src={People}
+                                alt="人"
+                                class="object-fit brightness-110 blur-sm"
+                        />
+                    </div>
+                    <div class="absolute h-full w-full container content-center">
+                        <div class="text-center">
+                            <h1 class="text-5xl font-bold">細田千尋 研究室</h1>
+                            <p class="my-4 text-base">
+                                東北大学大学院情報科学研究科 人間社会情報科学専攻
+                                学習心理情報学分野<br/>
+                                東北大学加齢医学研究所　脳科学研究部門　認知行動脳科学分野
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="">
+                <div class="slide h-full bg-base-200">
+                    <div class="container h-full mx-auto my-auto py-20 md:py-32">test</div>
+                </div>
+            </section>
+            <section class="">
+                <div class="scroll-container absolute">
+                    <section class="slide bg-base-100">
+                        <div class="h-full mx-auto my-auto py-12 relative">
+                            <div class="w-full h-full flex absolute">
+                                <Image
+                                        src={People}
+                                        alt="人"
+                                        class="object-fit brightness-110 blur-sm"
+                                />
+                            </div>
+                            <div class="absolute h-full w-full container content-center">
+                                <div class="text-center">
+                                    <h1 class="text-5xl font-bold">細田千尋 研究室</h1>
+                                    <p class="my-4 text-base">
+                                        東北大学大学院情報科学研究科 人間社会情報科学専攻
+                                        学習心理情報学分野<br/>
+                                        東北大学加齢医学研究所　脳科学研究部門　認知行動脳科学分野
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <section class="">
+                <div class="slide h-full bg-base-200">
+                    <div class="container h-full mx-auto my-auto py-20 md:py-32">test</div>
+                </div>
+            </section>
+            <!-- <section class=""> -->
+            <!-- { -->
+            <!--   posts_top_page.length === 0 ? ( -->
+            <!--     <div class="slide bg-white"> -->
+            <!--       <NoContents -->
+            <!--         contents={posts_top_page} -->
+            <!--         class="container h-full mx-auto my-auto py-20 md:py-32" -->
+            <!--       /> -->
+            <!--     </div> -->
+            <!--   ) : ( -->
+            <!--     posts_top_page.map((post) => ( -->
+            <!--       <div class="slide bg-white"> -->
+            <!--         <div class="container h-full mx-auto my-auto py-20 md:py-32"> -->
+            <!--           <PostBodySlide post={post} class="my-auto" /> -->
+            <!--         </div> -->
+            <!--       </div> -->
+            <!--     )) -->
+            <!--   ) -->
+            <!-- } -->
+            <!-- </section> -->
+        </div>
+    </div>
+</Layout>
+
+<script>
+    import {gsap} from "gsap";
+    import {Observer} from "gsap/Observer";
+    import * as events from "node:events";
+
+    gsap.registerPlugin(Observer);
+
+    const transition_speed = 200; //アニメーション速度
+    let panels = gsap.utils.toArray(".slide"),
+        steps = gsap.utils.toArray(".step-link"),
+        panel_current_index = -1,
+        animating: boolean,
+        scrolling: boolean;
+
+    // スクロールイベント監視
+    Observer.create({
+        target: window,
+        type: "wheel,touch,pointer",
+        wheelSpeed: -1,
+        onStop: () => {
+            scrolling = false;
+            console.log(panel_current_index);
+        },
+        onDown: () =>
+            !animating && !scrolling && goToSection(panel_current_index - 1, -1),
+        onUp: () =>
+            !animating && !scrolling && goToSection(panel_current_index + 1, 1),
+        tolerance: 400,
+        preventDefault: true,
+    });
+
+    // ステップクリックイベント
+    steps.forEach((v:any, i:number, a:any[]) => {
+        v.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (i === panel_current_index) {
+                return;
+            }
+            goToSection(i, i > panel_current_index ? 1 : -1);
+        });
+    });
+
+    // セクション移動
+    function goToSection(index:number, direction:number) {
+        // make sure it's valid
+        if (index < 0) {
+            index = 0;
+            return;
+        }
+        if (index >= panels.length) {
+            index = panels.length;
+            return;
+        }
+        scrolling = true;
+        animating = true;
+
+        let tl = gsap.timeline({
+            defaults: {duration: 1.25, ease: "power1.inOut"},
+            onComplete: () => {
+                animating = false;
+            },
+        });
+
+        if (panel_current_index !== -1) {
+            gsap.set(panels[panel_current_index], {zIndex: 0});
+            tl.to(panels[panel_current_index], {
+                yPercent: (-transition_speed / 10) * direction,
+            }).set(panels[panel_current_index], {autoAlpha: 0});
+        }
+
+        gsap.set(panels[index], {autoAlpha: 1, zIndex: 1});
+        tl.fromTo(
+            panels[index],
+            {
+                yPercent: transition_speed * direction,
+            },
+            {yPercent: 0},
+            0,
+        );
+
+        ChangeStepColor(index);
+
+        panel_current_index = index;
+    }
+
+    // ステップの色変更
+    function ChangeStepColor(index:number) {
+        steps.forEach((v:any, i, a) => {
+            if (i <= index) {
+                v.classList.remove("text-gray-400");
+                v.classList.add("text-black");
+            } else {
+                v.classList.remove("text-black");
+                v.classList.add("text-gray-400");
+            }
+        });
+    }
+
+    // 初期状態は最初のセクションを表示
+    goToSection(0, 1);
+    scrolling = false;
+</script>
+
+
+<style is:inline>
+.scroll-container {
+    height: 90vh;
+    width: 100vh;
+    top: 0;
+    overflow-y: hidden;
+    }
+
+.slide {
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    position: fixed;
+    visibility: hidden;
+    overflow-y: hidden;
+    }
+</style>

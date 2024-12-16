@@ -1,0 +1,63 @@
+---
+import {
+  getAllPosts,
+  getRankedPosts,
+  getAllTags,
+  getNumberOfPages,
+  getAllBlocksByBlockId,
+} from '@/lib/notion/client.ts';
+import { postTagFilter } from '@/lib/filter-helpers.ts';
+import Layout from '../layouts/NavLayout.astro';
+import PostBodySlide from '@/components/PostBodySlide.astro';
+import { getAllPosts } from '../lib/notion/client';
+
+const PAGE_READ_MAX = 10;
+
+const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
+  getAllPosts(),
+  getRankedPosts(),
+  getAllTags(),
+  getNumberOfPages(),
+]);
+
+// page meta data
+const PageTitle = 'お問い合わせ';
+const PageDescription = '細田研究室へのお問い合わせ方法です。';
+const PageTag = 'contact-1';
+
+const posts_research_page = postTagFilter(posts, PageTag).sort(
+  (a, b) => {
+    return a.PageOrder - b.PageOrder;
+  },
+);
+---
+
+<Layout title={PageTitle} desctiprion={PageDescription} pageTag={PageTag}>
+  <div class=container" slot="main">
+    <section>
+      {
+        posts_research_page.length === 0 ? (
+          <div>
+            <p>投稿がありません</p>
+          </div>
+        ) : (
+          posts_research_page.map((post) => (
+            <div>
+              <PostBodySlide post={post} />
+            </div>
+          ))
+        )
+      }
+    </section>
+    <section class="container mx-auto">
+      <h2 class="text-xl font-bold ml-6">お問い合わせはフォームにお願いいたします。</h2>
+      <div class="container mx-auto w-full">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSflUfRzwB6Jlj-QTI2LvNwzZ7-clR4ERtVkKa-2Gqj-KX2T5g/viewform?embedded=true"
+          width="700" height="1200" frameborder="0" marginheight="0" marginwidth="0"
+          class="w-full">読み込んでいます…
+        </iframe>
+      </div>
+    </section>
+  </div>
+</Layout>
