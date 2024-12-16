@@ -18,6 +18,7 @@
     "astro": "^5.0.5",
     "astro-icon": "^1.1.1",
     "gsap": "^3.12.5",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3"
   },
