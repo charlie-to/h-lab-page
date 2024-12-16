@@ -1,0 +1,6 @@
+version: '3'
+tasks:
+    act-dry-run:
+        desc: check github actions locally in dry-run mode
+        cmds:
+        - act --container-architecture linux/amd64 -n
