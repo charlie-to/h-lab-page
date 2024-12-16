@@ -3,11 +3,13 @@ import "../styles/globals.css";
 export interface Props {
   title: string;
   description: string;
-  path: string;
-  ogImage: string;
+  ogImage?: string;
 }
+import {getRelativeLocaleUrl} from "astro:i18n";
+import {getLangFromUrl} from "../i18n/utils";
+import Header from "./Header.astro";
 
-const { title = "", description = "", path = "/", ogImage = "" } = Astro.props;
+const { title = "東北大学　細田研究室", description = "東北大学　細田研究室のHPです。", ogImage = "/default_icon.svg" } = Astro.props;
 
 const NavLinks = [
   [{ label: "ホーム", href: "/index.html" }],
@@ -22,26 +24,24 @@ const NavLinks = [
   [{ label: "お問い合わせ", href: "/contact/index.html" }],
 ];
 
-const siteTitle = "サイトタイトル";
-const siteDescription = "サイトの説明";
 const siteURL = "https://localhost:4321";
+const lang = getLangFromUrl(Astro.url)
 ---
 
-<!doctype html>
-<html lang="ja" prefix="og: https://ogp.me/ns#" data-theme="cmyk">
+<html lang={lang} prefix="og: https://ogp.me/ns#" data-theme="cmyk">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="max-image-preview:large" />
     <meta charset="UTF-8" />
     <meta name="generator" content={Astro.generator} />
-    <title>{siteTitle}</title>
-    <meta name="description" content={siteDescription} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="canonical" href={siteURL} />
     <meta property="og:url" content={siteURL} />
-    <meta property="og:title" content={siteTitle} />
-    <meta property="og:description" content={siteDescription} />
-    <meta name="twitter:title" content={siteTitle} />
-    <meta name="twitter:description" content={siteDescription} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
     <link
       rel="stylesheet"
@@ -61,19 +61,8 @@ const siteURL = "https://localhost:4321";
           <div id="content">
             <slot name="main" />
           </div>
-          <!-- <section>
-            <SearchButton />
-            <slot name="aside" />
-          </section> -->
         </main>
       </div>
     </div>
-
-    <!-- <SearchModal />
-    {
-      ENABLE_LIGHTBOX && (
-        <script src={getStaticFilePath('/scripts/fslightbox.js')} />
-      )
-    } -->
   </body>
 </html>

@@ -1,47 +1,101 @@
 ---
-import { NUMBER_OF_POSTS_PER_PAGE } from '../server-constants.ts'
-import {
-  getAllPosts,
-  getRankedPosts,
-  getAllTags,
-  getNumberOfPages,
-  getAllBlocksByBlockId,
-} from '../lib/notion/client.ts'
-import { postTagFilter } from '../lib/filter-helpers.ts'
-import Layout from '../layouts/NavLayout.astro'
-import NoContents from '../components/NoContents.astro'
-import BlogPostsLink from '../components/BlogPostsLink.astro'
-import BlogTagsLink from '../components/BlogTagsLink.astro'
-import PostBodySlide from '../components/PostBodySlide.astro'
-import PostCarousel from '../components/PostCarousel.astro'
-
-const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
-  getAllPosts(),
-  getRankedPosts(),
-  getAllTags(),
-  getNumberOfPages(),
-])
-
+import ContentLayout from "@/layouts/ContentLayout.astro"
+import MemberContent from "../components/MemberContent.astro";
+import {Image} from "astro:assets"
 // page meta data
 const PageTitle = '細田千尋'
 const PageDescription = '細田千尋の自己紹介です。'
-const PageTag = 'about-me-1'
 
-const posts_tags = postTagFilter(posts, PageTag).sort((a, b) => {
-  return a.PageOrder - b.PageOrder
-})
+// page content
+import ResearchSlide1 from "./research1.png"
+import ResearchSlide2 from "./research2.png"
 ---
 
-<Layout title={PageTitle} description={PageDescription} pageTag={PageTag}>
-  <div slot="main">
-    <div class="container">
-      {
-        posts_tags.length === 0 ? (
-          <NoContents />
-        ) : (
-          posts_tags.map((post) => <PostBodySlide post={post} />)
-        )
-      }
+<ContentLayout title={PageTitle} description={PageDescription}>
+    <div class="container mx-auto md:px-10 my-10">
+        <MemberContent
+                name_jp="細田 千尋"
+                name_en="HOSODA Chihiro"
+                degree="博士（医学）"
+                history={[
+                    {
+                        year: 2022, content: [
+                            "東北大学大学院情報科学研究科 加齢医学研究所脳科学研究部門 准教授"]
+                    },
+                    {
+                        year: 2017,
+                        content: ["特定国立研究開発法人理化学研究所", "生命機能科学研究センター客員研究員（2020年3月まで）"]
+                    },
+                    {
+                        year: 2014,
+                        content: ["東京大学大学院総合文化研究科 特任研究員（2022年3月まで）", "国立科学研究機構科学技術振興機構 さきがけ研究者（専任）"]
+                    },
+                    {year: 2012, content: ["国際電気通信基礎技術研究所(ATR)", "脳情報通信総合研究所 専任研究員"]},
+                    {
+                        year: 2010,
+                        content: ["国立研究開発法人国立精神・神経医療研究センター 神経研究所疾病研究第七部 流動研究員", "東京医科歯科大学大学院　博士（医学）取得"]
+                    },
+
+                ]}
+                photo={{
+                    src: "/hosoda.png",
+                    alt: "細田千尋"
+                }}
+        >
+            <div class="block">
+                <a class="link link-accent" href="https://researchmap.jp/chihiro">researchmap</a> <br/>
+                <a class="link link-accent" href="https://w3.tohoku.ac.jp/moonshot/project/page-599/">東北大学ムーンショット型研究開発事業プロジェクトマネージャー</a>
+            </div>
+        </MemberContent>
     </div>
-  </div>
-</Layout>
+
+    <div class="container mx-auto px-5 my-10">
+        <h2 class="text-2xl font-bold md:text-4xl text-primary">研究テーマ</h2>
+        <Image src={ResearchSlide1} alt="研究スライド1" class="object-contain"/>
+        <Image src={ResearchSlide2} alt="研究スライド2" class="object-contain"/>
+        <div class="my-3">
+            <h3 class="text-xl font-semibold underline">特性の個人差を脳情報から定量化</h3>
+            <p>
+                やり抜く力 GRIT・意志力・メタ認知・自己効力感の個人差の定量的予測指標の解明と個別最適な育成方法
+                子どもの非認知能力の発達の解明に基づく効果的な非認知能力育成法開発
+            </p>
+        </div>
+
+        <div class="my-3">
+            <h3 class="text-xl font-semibold underline">認知機能の個人差を脳情報から定量化 </h3>
+            <p>
+                英語力・プログラミング能力・論理的思考・創造性などの個人差を産む神経基盤解明や発達期の特徴解明と脳可塑性を誘導する個別最適な学習法解明
+            </p>
+        </div>
+
+        <div class="my-3">
+            <h3 class="text-xl font-semibold underline">生涯学習サポートとWell-being </h3>
+            <p>
+                IoT技術と心理効果、行動経済学の理論を利用することで、脳可塑性を促進し、個人の能力を拡張・最大化できる教育・支援法を開発し生涯学習をサポート・well-being
+                の最大化へ
+            </p>
+        </div>
+
+    </div>
+
+    <div class="container mx-auto px-5">
+        <h2 class="text-2xl md:text-4xl font-bold text-primary">Education</h2>
+        <h3 class="font-semibold">現在の担当講義</h3>
+        <ul class="list-disc p-5">
+            <li>学習心理情報学（東北大学）</li>
+        </ul>
+        <h3 class="font-semibold">過去の担当講義</h3>
+        <ul class="list-disc p-5">
+            <li>幸福学（帝京大学）</li>
+            <li>生理学実習（帝京大学医学部）</li>
+            <li>感覚情報処理論 (早稲田大学人間科学部)</li>
+            <li>感性工学 (芝浦工業大学大学院)</li>
+            <li>人間工学（芝浦工業大学デザイン工学部）</li>
+            <li>時事英語（芝浦工業大学デザイン工学部）</li>
+            <li>Komaba Brain Science（東京大学）</li>
+            <li>認知心理学（駒沢大学大学院）</li>
+            <li>心理学概論（東京女子大学）</li>
+            <li>認知工学論（早稲田大学人間科学部）</li>
+        </ul>
+    </div>
+</ContentLayout>

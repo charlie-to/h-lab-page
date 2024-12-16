@@ -1,48 +1,102 @@
 ---
-import {
-  getAllPosts,
-  getRankedPosts,
-  getAllTags,
-  getNumberOfPages,
-  getAllBlocksByBlockId,
-} from '@/lib/notion/client.ts'
-import { postTagFilter } from '@/lib/filter-helpers.ts'
-import Layout from '../layouts/NavLayout.astro'
-import PostBodySlide from '@/components/PostBodySlide.astro'
-
-const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
-  getAllPosts(),
-  getRankedPosts(),
-  getAllTags(),
-  getNumberOfPages(),
-])
-
+import ContentLayout from "../layouts/ContentLayout.astro"
 // page meta data
 const PageTitle = '研究プロジェクト'
 const PageDescription = '研究プロジェクトの一覧です。'
-const PageTag = 'publications-1'
 
-const posts_research_page = postTagFilter(posts, PageTag).sort(
-  (a, b) => {
-    return a.PageOrder - b.PageOrder
-  }
-)
+
 ---
 
-<Layout title={PageTitle} description={PageDescription} pageTag={PageTag}>
-  <div class="container" slot="main">
-    {
-      posts_research_page.length === 0 ? (
-        <div>
-          <p>投稿がありません</p>
-        </div>
-      ) : (
-        posts_research_page.map((post) => (
-          <div>
-            <PostBodySlide post={post} />
-          </div>
-        ))
-      )
-    }
-  </div>
-</Layout>
+<ContentLayout title="研究業績" description="研究業績リスト"  >
+    <section class="container mx-auto my-6">
+        <h1 class="text-2xl font-semibold my-6">Publications</h1>
+        <ul class="list-disc text-base">
+            <li>Hosoda,C., YunFeng Z, Watanabe J, Maruya K, Tabuchi R, Hosokawa K, Matsuhashi T. (2024) The importance of childhood social capitals in the future well-being of children. Front. Psychol. https://doi.org/10.3389/fpsyg.2024.1389269　査読有　</li>
+            <li>Matsuhashi T , Ito M , Kuhara T , Hosokawa K , Inukai K , Minamizawa K , Watanabe J , Okanoya K , Tanaka Y , Hosoda C. (2024) Modulation of Fronto-striatal Functional Connectivity and Social Interaction Through Conveying Digital Somatic Information. Authorea.　doi:10.22541/au.171597289.95303917/v1</li>
+            <li>Hosoda,C., Ochiai,R., Hosokawa, K., Nakamura, Y., Matsuhashi, T., Okanoya, K. (2024) The Role of Frontal Pole Cortex and Personalized Feedback in Sustaining Future-Oriented Healthy Dietary Behaviors. Research Square.https://doi.org/10.21203/rs.3.rs-3963330/v1</li>
+            <li>Hosoda, C., Futami, K., Hosokawa, K., Isogaya, Y., Terada, T., Maruya, K., & Okanoya, K. (2021). The structure of the superior and inferior parietal lobes predicts inter-individual suitability for virtual reality. Scientific reports, 11(1), 1-12.​ https://doi.org/10.1038/s41598-021-02957-x</li>
+            <li>Imafuku, M., Saito, A., Hosokawa, K., Okanoya, K., & Hosoda, C. (2021). Importance of Maternal Persistence in Young Children’s Persistence. Frontiers in Psychology, 4038. https://doi.org/10.3389/fpsyg.2021.726583</li>
+            <li>細田千尋. (2020). 脳科学からみたプログラミング学習―プログラミング的思考は汎化するのか？―.  情報処理, 61(11), 1120-1125</li>
+            <li>Hosoda, C., Tsujimoto, S., Tatekawa, M., Honda, M., Osu, R., & Hanakawa, T. (2020). Plastic frontal pole cortex structure related to individual persistence for goal achievement. Communications Biology, 3(1), 194–194. https://doi.org/10.1038/s42003-020-0930-4</li>
+            <li>Terada, T., Hosoda, C., & Futami, K. (2020). 認知バイアスデバイドを解消するための受容性スクリーニング. インタラクション2020論文集, 一般社団法人情報処理学会, 87-95</li>
+            <li>Kita, K., Osu, R., Hosoda, C., Honda, M., Hanakawa, T., & Izawa, J. (2019). Neuroanatomical Basis of Individuality in Muscle Tuning Function: Neural Correlates of Muscle Tuning. Frontiers in Behavioral Neuroscience, 13, 28–28.</li>
+            <li>Maeshima, H., Hosoda, C., Okanoya, K., & Nakai, T. (2018). Reduced γ-aminobutyric acid in the superior temporal gyrus is associated with absolute pitch. Neuroreport, 29(17), 1487–1491.</li>
+            <li>細田千尋, & 岡ノ谷一夫. (2018). 防衛的悲観主義が学習行動に及ぼす影響と脳可塑性. 日本心理学会大会発表論文集, 2PM–063–2PM–063.</li>
+            <li>Nakai, T., Nakatani, H., Hosoda, C., Nonaka, Y., & Okanoya, K. (2017). Sense of Accomplishment Is Modulated by a Proper Level of Instruction and Represented in the Brain Reward System. PloS One, 12(1), e0168661–e0168661.</li>
+            <li>Hosoda, C. (2017). Predictor of second language learning success: The development of temporal cortex and the goal orientation. Journal of the Neurological Sciences, 381, 258–258.</li>
+            <li>Hosoda, C., Nariai, T., Nonaka, Y., & Okanoya, K. (2017). Structural plasticity induced by motor learning – implication to optimize bran stimulation. Brain Stimulation, 10(2), 525–525.</li>
+            <li>能力獲得に伴う脳可塑的変化の検討—多次元イメージング法による可視化. 精神科</li>
+            <li>Hanakawa, T., & Hosoda, C. (2014). Functions of the cortico-basal ganglia circuits for spoken language may extend beyond emotional-affective modulation in adults. The Behavioral and Brain Sciences, 37(6), 555–556.</li>
+            <li>Hosoda, C., Tanaka, K., Nariai, T., Honda, M., & Hanakawa, T. (2013). Dynamic neural network reorganization associated with second language vocabulary acquisition: a multimodal imaging study. The Journal of Neuroscience, 33(34), 13663–13672.</li>
+            <li>Yatabe, K., Hosoda, C., Watanabe, K., & Hanakawa, T. (2013). MASTERY OF ACTION SHAPES OUR VISUAL OBJECT RECOGNITION. JOURNAL OF COGNITIVE NEUROSCIENCE, 264-264.</li>
+            <li>Nariai, T., Inaji, M., Tanaka, Y., Hiura, M., Hosoda, C., Ishii, K., & Ohno, K. (2013). PET Molecular Imaging to Investigate Higher Brain Dysfunction in Patients with Neurotrauma. Brain Edema XV, 118, 251–254.</li>
+            <li>Hosoda, C., Hanakawa, T., Nariai, T., Ohno, K., & Honda, M. (2012). Neural mechanisms of language switch. Journal of Neurolinguistics, 25(1), 44–61.</li>
+            <li>Nariai, T., Inaji, M., Hiura, M., Ishii, K., Hosoda, C., & Ohno, K. (2011). Functional Brain Imaging to Investigate the Higher Brain Dysfunction induced by Diffuse Brain Injury(Traumatic Head Injury Update). Japanese Journal of Neurosurgery, 20(12), 880–886.</li>
+            <li>Hosoda, C., Nariai, T., Ishiwata, K., Ishii, K., Matsushima, Y., & Ohno, K. (2010). Correlation between Focal Brain Metabolism and Higher Brain Function in Patients with Moyamoya Disease. International Journal of Stroke, 5(5), 367–373.</li>
+            <li>Hosoda, C., Hanakawa, T., & Honda, M. (2010). White matter integrity between the right prefrontal cortex and caudate nucleus reflects proficiency in second language. Neuroscience Research, 68, e408.</li>
+            <li>成相直, 田中洋次, 武川麻紀, 百瀬俊哉, 細田千尋, 稲次基希, & 大野喜久郎. (2009). O-027 脳循環画像計測に基づいた小児もやもや病治療の現状と長期予後. 脳と発達, 41(suppl), S176–S176.</li>
+            <li>Hosoda, C., Hanakawa, K., Nariai, T., Ohno, K., & Honda, M. (2008). Substrates of switching of phonology between the first and second languages. 14th Annual Meeting of the Organization for Human Brain Mapping, Online.</li>
+            <li>細田千尋, 成相直, 前原健壽, 百瀬俊也, 石井賢二, 松島善治, & 大野喜久郎. (2007). O-067 もやもや病患者の高次脳機能障害と局所脳代謝異常との関連性―血行再建術による変化の検討. 脳と発達, 39(suppl), S170–S170.</li>
+            <li>成相直, 百瀬俊也, 田中洋次, 細田千尋, 稲次基希, 青柳傑, 石渡喜一, 石井賢二, & 大野喜久郎. (2007). B1-28 脳循環計測法に基づいたもやもや病の治療－特に非手術例のフォローアップに関して. 脳卒中, 29(2), 235–235.</li>
+            <li>Hanakawa, T., Hosoda, C., Shindo, S., & Honda, M. (2007). Mental rotation of hands and feet involves somatotopically organized brain regions. Neuroscience Research, 58, S60–S60.</li>
+            <li>Maehara, T., Nariai, T., Momose, T., Hosoda, C., Ishii, K., Ishiwata, K., & Ohno, K. (2005). STATISTICAL ANALYSIS OF C-11 FLUMAZENIL AND F-18 FLUORODEOXYGLUCOSE PET ABNORMALITIES IN PATIENTS WITH TEMPORAL LOBE EPILEPSY CAUSED BY CAVERNOUS ANGIOMAS AND BENIGN BRAIN TUMORS: 1.085. Epilepsia, 46.</li>
+        </ul>
+    </section>
+
+    <section class="container mx-auto my-6">
+        <h1 class="text-2xl font-semibold my-6">Conference / Symposium</h1>
+        <ul class="list-disc text-base">
+            <li>CREST「人間と情報環境の共生インタラクション基盤技術の創出と展開」領域2023年度終了課題成果発表シンポジウム：細川 研知「脳情報と知覚の個人差からの認知機能個人差スクリーニング」,松橋 拓努「行動変容と脳可塑性を促進するための要件解明」　2024年3月19日</li>
+            <li>Matsuhashi T, Ito M, Kuhara T, Hosokawa K, Inukai K, Tanaka Y, Hosoda C, (2023/11/11-15) The Influence of Remote Tactile Communication on Functional Connectivity in Social Interaction. The Society for Neuroscience, Washington,D.C, USA</li>
+            <li>Hosokawa K, Matsuhashi T, Hosoda C, (2023/11/11-15) Can Brain Structure and Early Vision Predict Calculation Abilities? The Society for Neuroscience, Washington,D.C, USA</li>
+            <li>子どもの文化普及協会主シンポジウム記念講演「本を読むことの意義を脳科学から考える」　講演日：2023/10/25</li>
+            <li>第7回ヒト脳イメージング研究会（東京玉川大学）「機械学習によるT1強調画像からの達成感の予測」渡邊杜馬　松橋拓努　細川研知　細田千尋　2023年9月9日</li>
+            <li>Hosokawa K, Matsuhashi T, Hosoda C, (2023/8/1-4) Common neural basis among visual and cognitive spatial abilities. Japan Neuroscience Society, Japan</li>
+            <li>Hosokawa K, Matsuhashi T, Hosoda C, (2023/7/22-26) Can Brain Structure and Early Vision Predict Navigational Abilities? Organization for Human brain mapping, Canada</li>
+            <li>Matsuhashi T, Ito M, Kuhara T, Hosokawa K, Inukai K, Tanaka Y, Hosoda C, (2023/7/22-26) The Effects of Remote Audio-Visual-Tactile Communication System on Functional Connectivity. Organization for Human brain mapping, Canada.</li>
+            <li>東北大学大学院情報科学研究科シンポジウム：「やり抜く力とwell-beingな学び」2023年2月19日（日）午後　</li>
+            <li>東京大学未来社会協創推進本部 学知創出分科会 データプラットフォー ムイニシアティブ主催：​​​​「データ活用社会創生シンポジウム2022」「教育やwell-beingの向上に向けたデータ利活用への取り組み」2022年12月20日</li>
+            <li>Hosoda C., Hosokawa K., Okanoya K, (2022/11/14-19)  The neural basis of the　crowding effet for reading comprehension  Society for Neuroscience, San Diego, USA.</li>
+            <li>国立研究開発法人科学技術振興機構（JST) ウェルビーイング学会共催　公開シンポジウム「多様な個人のウェルビーイングと未来社会～ウェルビーイングの可視化とビジネスチャンス～」研究開発課題紹介「​​​​脳特徴と多面的達成感に基づく個別最適化教育支援」2022年11月7日</li>
+            <li>細田千尋　東京大学未来社会協創推進本部 学知創出分科会 データプラットフォー ムイニシアティブ主催：​​​​「データ活用社会創生シンポジウム」　シンポジスト　2022年12月20日</li>
+            <li>細田千尋「脳・行動情報の教育への活用法」データ活用社会創生シンポジウム2022年10月１0日　</li>
+            <li>第6回 ヒト脳イメージング研究会（東京都玉川大学）「プログラミング能力獲得を予測する 神経基盤と能力獲得に伴う可塑性の検討」細田千尋　2022年9月17日　</li>
+            <li>第6回 ヒト脳イメージング研究会（東京都玉川大学）「立体知覚及び空間知覚の個人差の基盤探索」細川研知 丸谷和史　細田千尋　2022年9月17日　</li>
+            <li>第6回 ヒト脳イメージング研究会（東京都玉川大学）「遠隔触覚コミュニケーションによる脳可塑性の検討」松橋拓努　細田千尋　2022年9月17日　</li>
+            <li>国立研究開発法人科学技術振興機構(JST)　ムーンショット目標９公開シンポジウムプロジェクト紹介「Child Care Commons：わたしたちの子育てを実現する代替親族のシステム要件の構築」　2022年9月12日</li>
+            <li>細田千尋「心折れる人と最後までやり抜ける人の決定的な違いとは」　ソフトウェア品質SQiPシンポジウム2021 基調講演　2021年9月10日</li>
+            <li>NEURO2022ゆいま〜る-つながる脳科学−シンポジジウム座長：神経科学xIOTから親子関係と早期教育のあり方の是非を説くpersisitenceの個人差神経基盤2022年7月3日</li>
+            <li>Hosoda C., Matsuhashi T., & Okanoya K. Defensive pessimist could promote the improvement the ability and brain plasticity in competitive environment, Society for Neuroscience. 2021年11月</li>
+            <li>Hosoda C., Matsuhashi T., & Okanoya K. Defensive pessimist backed by orbit frontal structure could improve performance in a competitive environment ,Organization for Human brain mapping. 2021年6月</li>
+            <li>Hosoda C.,Okanoya K,,Structural and functional differences in right precentral gyrus between the skilled and the novices badminton player, Organization for Human brain mapping, 2019年6月11日</li>
+            <li>Hosoda, C., Hamada, M., Maeshima, H., Nonaka,Y., Okanoya,K.,,Predictor of programming language learning success: The development of the inferior frontal cortex and the supramarginal cortex ,Organization for Human brain mapping, 2018年6月17日</li>
+            <li>Hosoda, C, Hamada, M, Maeshima, H, Nonaka,Y, Okanoya,K,Development of temporal cortex can predict L2 listening learning success ,World Congress of Neurology 2017年9月17日</li>
+            <li>細田 千尋, 脳情報とAIを用いて個別的教育に応用するー英語やプログラミングは能力差の背景に脳基盤差があるー ,感性工学会 2017年9月13日</li>
+            <li>Hosoda, C., Hamada, M, Maeshima, H, Nonaka,Y, Okanoya,K,Predictor of second language learning success: The development of temporal cortex and the goal orientation ,Organization for Human Brain Mapping 2017年6月</li>
+            <li>細田 千尋, 脳構造差が予測する英語能力の差とプログラミング能力の差 ,学研教育セミナー 2017年4月20日</li>
+            <li>細田 千尋, 脳情報とITの融合による教育効果向上への試み －脳情報の教育における有用性－ ,第１４回情報科学技術フォーラム 2015年9月15日</li>
+            <li>細田 千尋、岡ノ谷 一夫、本田 学、花川 隆,脳の可塑性をより誘発する学習法の解明 ,第17回日本ヒト脳機能マッピ ング学会 2015年7月</li>
+            <li>細田 千尋,TBS未来の起源 出演 ,2015年7月</li>
+            <li>C, Hamada, M, Maeshima, H, Nonaka,Y, Okanoya,K,Predictor of second language learning success: The development of temporal cortex and the goal orientation ,2015年6月</li>
+            <li>細田 千尋,The neural substrate of goal-directed persistence ,Stanforad school of Medicine MRIseminor 2015年6月</li>
+            <li>細田 千尋,あなたと考えるあたらしい科学とくらし」～脳科学～ ,2015年5月31日</li>
+            <li>Chihiro Hosoda, Kazuo Okanoya, Manabu Honda, Rieko Osu, Takashi Hanak,Dynamic neural network reorganization associated with improvement. ,Society for Neuroscienc 2014年8月</li>
+            <li>細田 千尋,目標達成できる人と三日坊主の神経基盤差 ,Neuro2013 2013年6月</li>
+            <li>Chihiro Hosoda, Kanji Tanaka, Manabu Honda, Takashi Hanakawa,The more or less ability, The more or less brain structure ,Society for Neuroscience 2012年</li>
+            <li>Hosoda, C., White matter integrity reflects proficiency in second language. ,Society for Neuroscience 2011年</li>
+            <li>Chihiro Hosoda, Takashi Hanakawa, Satoshi Tanaka, Tadashi Nariai, Kikuo Ohno, Manabu Honda,Correlation between cortico-subcortical gray matter volume or White matter intensity and proficiency in second language ,16th Annual Meeting of the Organization for human brain Mapping. 2010年6月</li>
+            <li>細田千尋, 花川隆, 成相直, 大野喜久郎, 本田学,第一言語と第二言語の音韻切り替えのメカニズム ,第30回国立精神神経センター神経研究所 研究発表会 2010年3月</li>
+            <li>細田千尋, 花川隆, 田中悟史, 本田学,多次元イメージングによるバイリンガル研究 ,第2回脳統合機能研究センター（CBIR）インスパイアシンポジウム 2010年2月</li>
+            <li>細田千尋, 花川隆, 田中悟史, 本田学,Correlation between cortico-subcortical gray matter volume and proficiency in second language ,第32回日本神経科学大会 2009年9月</li>
+            <li>細田千尋, 花川隆, 成相直, 大野喜久郎, 本田学,第一言語と第二言語の音韻切り替えのメカニズム ,第38回日本臨床神経生理学会 2008年11月</li>
+            <li>Hosoda C, Hanakawa T, Nariai T, Ohno K, Honda M,Substrates of switching of phonology between the first and second languages ,14th Annual Meeting of the Organization for human brain Mapping 2008年6月</li>
+            <li>細田千尋, 花川隆, 本田学,系列指運動課題セット間の切り替え時の脳活動 ,第2回生理学研究所motor contol研究会 2008年5月</li>
+            <li>細田千尋, 花川隆, 本田学,Substrates of switching of phonology between the first and second languages ,第31回日本神経科学大会 2008年</li>
+            <li>Hosoda ,C, Nariai, T, Momose,T, Maehara, T, Ohono,K,Correlation between Focal Brain Metabolism and Higher Brain Function in Patients with Moyamoya Disease –Comparison of before with after operation ,13th Annual Meeting of the Organization for human brain Mapping, 2007年6月</li>
+            <li>細田 千尋,もやもや病患者の高次脳機能障害と局所脳代謝異常との関連性—血行再建術による変化の検討 ,第46回小児神経学会総会 2007年5月</li>
+            <li>細田千尋, 成相直, 前原健寿, 石井賢二, 石渡喜一, 大野喜久郎,難治性側頭葉てんかん患者の高次脳機能障害とFMZ受容体との関連性 ,第30回てんかん外科学会 2006年10月</li>
+            <li>Hosoda ,C, Nariai, T, Momose,T, Maehara, T, Ohono,K,Correlation among focal cerebral metabolism, neuronal integrity and higher brain function in patients with temporal lobe epilepsy. –a PET study-. ,12th Annual Meeting of the Organization for human brain Mapping 2006年6月</li>
+            <li>細田千尋, 成相直, 松島善治, 石井賢二, 石渡喜一, 大野喜久郎,もやもや病患者の高次脳機能障害と局所脳代謝異常との関連性 ,第64回脳神経外科総会 2005年10月</li>
+            <li>細田千尋, 成相直, 松島善治, 石井賢二, 石渡喜一, 大野喜久郎,もやもや病患者の局所脳代謝異常 ,第47回日本小児神経学会総会 2005年5月</li>
+    </section>
+</ContentLayout>

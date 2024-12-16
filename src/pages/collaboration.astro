@@ -1,50 +1,29 @@
 ---
-import {
-  getAllPosts,
-  getRankedPosts,
-  getAllTags,
-  getNumberOfPages,
-  getAllBlocksByBlockId,
-} from '@/lib/notion/client.ts'
-import { postTagFilter } from '@/lib/filter-helpers.ts'
-import Layout from '../layouts/NavLayout.astro'
-import PostBodySlide from '@/components/PostBodySlide.astro'
-
-const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
-  getAllPosts(),
-  getRankedPosts(),
-  getAllTags(),
-  getNumberOfPages(),
-])
-
+import ContentLayout from "../layouts/ContentLayout.astro"
 // page meta data
 const PageTitle = '産学連携'
 const PageDescription = '産学連携の説明'
-const PageTag = 'collaboration-1'
-
-const posts_research_page = postTagFilter(posts, PageTag).sort(
-  (a, b) => {
-    return a.PageOrder - b.PageOrder
-  }
-)
 ---
 
-<Layout title={PageTitle} description={PageDescription} pageTag={PageTag}>
-  <!--TODO: 画像実装-->
-  <div class=""></div>
-  <div class="container" slot="main">
-    {
-      posts_research_page.length === 0 ? (
-        <div>
-          <p>投稿がありません</p>
-        </div>
-      ) : (
-        posts_research_page.map((post) => (
-          <div>
-            <PostBodySlide post={post} />
-          </div>
-        ))
-      )
-    }
-  </div>
-</Layout>
+<ContentLayout title={PageTitle} description={PageDescription}>
+    <div class="container mx-auto px-10">
+        <h1 class="text-2xl md:text-4xl font-bold">産学連携</h1>
+        <p class="my-5">
+            本研究室では、学習、教育、自己効力感、ウェルビーイングを幅広く研究しており、産学連携研究を推進しています。ご興味のある担当者さまは、お問い合わせフォームからお気軽にご連絡ください。
+        </p>
+        <!-- TODO: お問い合わせフォーム -->
+
+
+        <h2 class="text-2xl">産学・自治体共同研究一覧</h2>
+        <ul class="list-disc px-5">
+            <li>東証一部上場企業との産学連携</li>
+            <li>健康行動における脳情報を利用した行動変容促進プロジェクト</li>
+            <li>プロスポーツ球団との産学連携</li>
+            <li>プロスポーツ選手における行動変容推進プロジェクト</li>
+            <li>教育委員会との産学連携</li>
+            <li>学校教育における個別最適化教育実現への検討</li>
+            <li>東証一部上場企業キャリア開発センターとの産学連携</li>
+            <li>人材育成における個別育成法の開発</li>
+        </ul>
+    </div>
+</ContentLayout>

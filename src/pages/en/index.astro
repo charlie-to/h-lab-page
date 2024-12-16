@@ -1,10 +1,10 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
+import Layout from "../../layouts/BaseLayout.astro";
 import {Image} from "astro:assets";
-import People from "./people_demo.jpg";
+import People from "../people_demo.jpg";
 import {Icon} from "astro-icon/components"
-import Header from "../layouts/Header.astro";
-import NewsCard from "../components/news/NewsCard.astro";
+import Header from "../../layouts/Header.astro";
+import NewsCard from "../../components/news/NewsCard.astro";
 
 const NavLinks = [
     [{label: "ホーム", href: "/index.html"}],
@@ -19,10 +19,10 @@ const NavLinks = [
     [{label: "お問い合わせ", href: "/contact/index.html"}],
 ];
 
-const posts_top_page = [1,2,3];
+const posts_top_page = [1, 2, 3];
 ---
 
-<Layout title="細田研究室" description="東北大学細田研究室のHPです。">
+<Layout title="Hosoda Lab" description="Hosoda Lab Homepage">
     <div slot="main" class="relative">
         <!--navigation bar-->
         <div id="nav" class="w-screen bg-white z-[10001] fixed">
@@ -104,11 +104,12 @@ const posts_top_page = [1,2,3];
                     </div>
                     <div class="absolute h-full w-full container content-center">
                         <div class="text-center">
-                            <h1 class="text-2xl md:text-5xl font-bold">細田千尋 研究室</h1>
+                            <h1 class="text-2xl md:text-5xl font-bold">Hosoda Lab</h1>
                             <p class="my-4 text-base">
-                                東北大学大学院情報科学研究科 人間社会情報科学専攻
-                                学習心理情報学分野<br/>
-                                東北大学加齢医学研究所　脳科学研究部門　認知行動脳科学分野
+                                Tohoku University Graduate School of Information Sciences, Human-Social Information
+                                Sciences<br/>
+                                Tohoku University Institute of Development, Aging and Cancer, Department of Brain
+                                Science, Cognitive and Behavioral Neuroscience
                             </p>
                         </div>
                     </div>
@@ -137,46 +138,64 @@ const posts_top_page = [1,2,3];
                 </div>
             </section>
 
-
             <!-- slide3 -->
             <section class="">
                 <div class="slide h-full bg-base-200">
                     <div class="container h-full mx-auto my-auto py-20 md:py-32">
                         <p class="text-xl font-semibold text-primary text-center">
-                            脳科学 × 最先端テクノロジー <br/>
-                            ウェルビーイング
+                            neuroscience × cutting-edge technology <br/>
+                            well-being
                         </p>
                         <p class="my-4 text-base px-3">
-                            多様な個性に合わせた目標達成支援によるウェルビーイング
-                            子ども・女性・高齢者を中心としたのウェルビーイング実現のためのコミュニティ
+                            Well-being through goal achievement support tailored to diverse individualities
+                            A community for realizing well-being, mainly for children, women, and the elderly.
                         </p>
                         <p class="my-4 text-sm px-3">
-                            全ての人が、自分の目標を達成（能力獲得、学習の習熟、健康行動継続など）するための、行動変容と脳可塑性（脳の構造的変化）を促進するパーソナライズ支援法の機能要件解明と開発：多様な個性を脳の構造差や生体情報から予測・可視化する手法を確立していきます。
-                            脳構造指標には、MRIなどの脳機能イメージング装置から得られるマルチモーダルな画像（灰白質・皮質厚・ミエリン・FA・ICVF・ISOVF・ODI・トラクトメトリなど）を用いて、画像に対する機械学習や深層学習から予測モデルの構築を行います。
-                            これらの多次元脳情報と、生体情報・IoT技術・行動経済学理論をもとに、​個人最適化目標達成支援システムの研究開発を目指します。
-                            また、東北大学発の取り組みとして、少子高齢化社会における子ども・女性・高齢者を中心としたウェルビーイング向上のためのコミュニティの構築を目指しています。
-                            「子どもを社会全体で見守ることが重要」と思う人たちが集まり、学び合いや助け合いを通じて、参加者全員がウェルビーイング（心身の健康・幸福感・達成感）な状態になっていくようなコミュニティ「WELL Community(商標登録中)」を構築しております。
+                            Elucidation and development of functional requirements for personalized support methods that
+                            promote behavioral change and brain plasticity (structural brain changes) for all
+                            individuals to achieve their goals (e.g., acquisition of abilities, mastery of learning,
+                            continuation of healthy behaviors): We will establish methods to predict and visualize
+                            diverse individual characteristics from brain structural differences and biological
+                            information.
+                            Multimodal images (gray matter, cortical thickness, myelin, FA, ICVF, ISOVF, ODI,
+                            tractometry, etc.) obtained from functional brain imaging devices such as MRI will be used
+                            as brain structural indicators, and predictive models will be constructed from machine
+                            learning and deep learning on the images.
+                            Based on this multidimensional brain information, biometric information, IoT technology, and
+                            behavioral economics theory, we aim to research and develop an individual optimization goal
+                            achievement support system.
+                            In addition, as an initiative originating from Tohoku University, we aim to build a
+                            community for improving the wellbeing of children, women, and the elderly in an aging
+                            society with a declining birthrate.
+                            We are building a “WELL Community (trademark registration in progress),” a community where
+                            people who believe that “it is important for society as a whole to look after children” can
+                            get together and through learning and helping each other, all participants can achieve a
+                            state of wellbeing (mental and physical health, happiness, and sense of achievement).
                         </p>
                     </div>
                 </div>
             </section>
+
 
             <!-- slide3 -->
             <section class="">
                 <div class="scroll-container absolute">
                     <section class="slide bg-base-100">
                         <div class="container h-full mx-auto my-auto py-20 md:py-32">
-                        <p class="text-xl font-semibold text-primary text-center">
-                            ご自分の脳のこと、知りたくありませんか？科学的に信頼できる心理テストをぜひ！
-                        </p>
-                        <p class="my-4 text-base px-3">
-                            現在、細田研究室では、以下の心理テストをオンラインで実施しております。
-                            ご自身の性格、やる気、知能などを知りたい方、ぜひ下記から試してください。
-                        </p>
-                        <p class="my-4 text-sm px-3">
-                            MRIで脳を計測する実験も実施しております。ご興味ある方は下記サイトをご確認あわせのうえ、ご応募をお願いいたします（謝礼有、実験場所は都内）。
-                        </p>
-                    </div>
+                            <p class="text-xl font-semibold text-primary text-center">
+                                Want to know more about your brain? Take our scientifically reliable psychological test!
+                            </p>
+                            <p class="my-4 text-base px-3">
+                                The following psychological tests are currently available online at Hosoda Lab.
+                                If you would like to know your personality, motivation, intelligence, etc., please try
+                                them below.
+                            </p>
+                            <p class="my-4 text-sm px-3">
+                                We are also conducting experiments to measure the brain using MRI. If you are
+                                interested, please check the following website and apply (rewards will be given and the
+                                experiment will take place in Tokyo).
+                            </p>
+                        </div>
                     </section>
                 </div>
             </section>
@@ -185,14 +204,21 @@ const posts_top_page = [1,2,3];
                 <div class="slide h-full bg-base-200">
                     <div class="container h-full mx-auto my-auto py-20 md:py-32">
                         <p class="text-xl font-semibold text-primary text-center">
-                            募集のお知らせ
+                            Recruitment Notice
                         </p>
                         <p class="my-4 text-base px-3">
-                            大学院生、社会人大学院生、研究生、学振PD の募集
-                            現在、東北大学大学院 情報科学研究科および加齢医学研究所 認知行動脳科学研究分野細田研究室では、大学院生を募集しております。
+                            Graduate Students, Working Graduate Students, Research Students, and JSPS PD
+                            The Graduate School of Information Sciences and the Hosoda Laboratory, Department of
+                            Cognitive and Behavioral Neuroscience, Institute of Development, Aging, and Cancer, Tohoku
+                            University are currently recruiting graduate students.
+
                         </p>
                         <p class="my-4 text-sm px-3">
-                            脳科学、心理学、統計学、工学等、様々なバックグラウンドの方で、子供から大人まで個人それぞれの、能力、ウェルビーイング、知能、やる気、スポーツ、行動変容についての研究に興味があれば、お気軽にお問い合わせの欄 からご連絡ください。
+                            If you have a background in brain science, psychology, statistics, engineering, etc., and
+                            are interested in studying the abilities, wellbeing, intelligence, motivation, sports, and
+                            behavior change of individual children and adults, please feel free to contact us from the
+                            Contact Us section
+                            to contact us.
                         </p>
                     </div>
                 </div>

@@ -7,5 +7,13 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [icon(), tailwind()]
+  output: "static",
+  integrations: [icon(), tailwind()],
+  i18n: {
+    locales: ["en","jp"],
+    defaultLocale: "jp",
+    routing:{
+      prefixDefaultLocale: false
+    }
+  }
 });

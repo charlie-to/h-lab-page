@@ -1,46 +1,13 @@
 ---
-import {
-  getAllPosts,
-  getRankedPosts,
-  getAllTags,
-  getNumberOfPages,
-  getAllBlocksByBlockId,
-} from '@/lib/notion/client.ts'
-import { postTagFilter } from '@/lib/filter-helpers.ts'
-import Layout from '../../layouts/NavLayout.astro'
-import PostBodyCard from '@/components/PostBodyCard.astro'
-
-const PAGE_READ_MAX = 10
-
-const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
-  getAllPosts(),
-  getRankedPosts(),
-  getAllTags(),
-  getNumberOfPages(),
-])
-
+import ContentLayout from "@/layouts/ContentLayout.astro"
 // page meta data
 const PageTitle = "ニュース"
 const PageDescription = '細田研究室でのニュースの一覧です。'
-const PageTag = 'news'
 
-const posts_filtered = postTagFilter(posts, PageTag).sort((a, b) => {
-  return a.Date - b.Date
-})
 ---
 
-<Layout title={PageTitle} description={PageDescription} pageTag={PageTag}>
-  <div class="container my-auto space-y-10 my-7" slot="main">
-    {
-      posts_filtered.length === 0 ? (
-        <div>
-          <p>投稿がありません</p>
-        </div>
-      ) : (
-        posts_filtered.map((post) => (
-          <PostBodyCard post={post} />
-        ))
-      )
-    }
+<ContentLayout title={PageTitle} description={PageDescription}>
+  <div class="container mx-auto px-5">
+
   </div>
-</Layout>
+</ContentLayout>
