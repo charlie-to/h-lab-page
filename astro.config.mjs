@@ -12,10 +12,10 @@ export default defineConfig({
   output: "static",
   integrations: [icon(), tailwind()],
   i18n: {
-    locales: ["en","jp"],
+    locales: ["en", "jp"],
     defaultLocale: "jp",
-    routing:{
-      prefixDefaultLocale: false
-    }
-  }
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 });

@@ -1,19 +1,19 @@
 ---
 export interface Props {
-    name_jp: string;
-    name_en: string;
-    degree?: string;
-    history?: {
-        year: number;
-        content: string[];
-    }[];
-    photo?: {
-        src: string;
-        alt: string;
-    }
+  name_jp: string;
+  name_en: string;
+  degree?: string;
+  history?: {
+    year: number;
+    content: string[];
+  }[];
+  photo?: {
+    src: string;
+    alt: string;
+  };
 }
 
-const {name_jp, name_en, degree, history, photo} = Astro.props;
+const { name_jp, name_en, degree, history, photo } = Astro.props;
 ---
 
 <div class="container mx-auto p-5">

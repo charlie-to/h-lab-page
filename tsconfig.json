@@ -3,13 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     "jsx": "react",
-    "types": [
-      "astro/client","gsap/types"
-    ]
+    "types": ["astro/client", "gsap/types"]
   }
 }

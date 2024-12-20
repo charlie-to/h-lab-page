@@ -1,22 +1,22 @@
 ---
 import Layout from "../../layouts/BaseLayout.astro";
-import {Image} from "astro:assets";
+import { Image } from "astro:assets";
 import People from "../people_demo.jpg";
-import {Icon} from "astro-icon/components"
+import { Icon } from "astro-icon/components";
 import Header from "../../layouts/Header.astro";
 import NewsCard from "../../components/news/NewsCard.astro";
 
 const NavLinks = [
-    [{label: "ホーム", href: "/index.html"}],
-    [{label: "研究業績", href: "/publications/index.html"}],
-    [{label: "産学連携", href: "/collaboration/index.html"}],
-    [
-        {label: "メンバー", href: "/member/index.html"},
-        {label: "細田千尋", href: "/aboutMe/index.html"},
-    ],
-    [{label: "ニュース", href: "/news/index.html"}],
-    [{label: "講演", href: "/lecture/index.html"}],
-    [{label: "お問い合わせ", href: "/contact/index.html"}],
+  [{ label: "ホーム", href: "/index.html" }],
+  [{ label: "研究業績", href: "/publications/index.html" }],
+  [{ label: "産学連携", href: "/collaboration/index.html" }],
+  [
+    { label: "メンバー", href: "/member/index.html" },
+    { label: "細田千尋", href: "/aboutMe/index.html" },
+  ],
+  [{ label: "ニュース", href: "/news/index.html" }],
+  [{ label: "講演", href: "/lecture/index.html" }],
+  [{ label: "お問い合わせ", href: "/contact/index.html" }],
 ];
 
 const posts_top_page = [1, 2, 3];
