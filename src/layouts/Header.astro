@@ -23,18 +23,53 @@ const NavLinks = [
         </div>
 
         <!-- 右揃え -->
-        <div class="flex-none flex">
+        <div class="flex-none flex ">
             <div class="lg:flex space-x-4 hidden mx-6">
                 {
                     NavLinks.map((navLink) => {
                         return (
                                 <div>
-                                    <button class="btn btn-ghost ">
-                                        <a href={navLink.href}>{navLink.label}</a>
-                                    </button>
+                                    <a href={navLink.href}>
+                                        <button class="btn btn-ghost p-5">
+                                            {navLink.label}
+                                        </button>
+                                    </a>
                                 </div>
                         )
                     })}
+            </div>
+            <div class="flex lg:hidden">
+                <div class="mx-8">
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn m-1">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                class="inline-block w-9 h-9 stroke-current">
+                            <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                        </svg>
+                        </div>
+                        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                            {
+                                NavLinks.map((navLink) => {
+                                    return (
+                                            <li>
+                                                <a href={navLink.href}>
+                                                    <button class="btn btn-ghost p-2">
+                                                        {navLink.label}
+                                                    </button>
+                                                </a>
+                                            </li>
+                                    )
+                                })}
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div>
                 <button class="btn btn-secondary ">
