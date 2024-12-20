@@ -1,12 +1,29 @@
 ---
 import ContentLayout from "@/layouts/ContentLayout.astro";
+import {getCollection} from "astro:content"
+
 // page meta data
 const PageTitle = "ニュース";
-const PageDescription = "細田研究室でのニュースの一覧です。";
+const PageDescription = "ニュース";
+
+// content
+const news = await getCollection("news");
 ---
 
 <ContentLayout title={PageTitle} description={PageDescription}>
-  <div class="container mx-auto px-5">
-
-  </div>
+    <div class="container mx-auto px-5 bg-neutral-content">
+        <h1 class="text-4xl font-bold">ニュース</h1>
+        <div class="mx-auto max-w-xl my-10">
+            <ul class="space-y-2">
+                {
+                    news.map((news) => (
+                            <li class="p-5">
+                                <span class="text-lg font-bold text-neutral mx-3">{news.data.date.toLocaleDateString()}</span>
+                                <span class="text-lg text-neutral">{news.data.title}</span>
+                            </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
 </ContentLayout>

@@ -1,12 +1,33 @@
 ---
 import ContentLayout from "@/layouts/ContentLayout.astro";
+import MemberContent from "@/components/MemberContent.astro";
+import { getCollection} from "astro:content";
+import {render} from "astro:content";
 // page meta data
 const PageTitle = "メンバー";
-const PageDescription = "細田研究室メンバーの一覧";
+const PageDescription = "メンバー";
+
+// content data
+const members = await getCollection("members");
+let {Content} = await render(members[0]); // just for suppress type error
 ---
 
 <ContentLayout title={PageTitle} description={PageDescription} >
-  <div class="">
+  <div class="container mx-auto">
+    <h1 class="text-3xl font-bold text-center my-8">メンバー</h1>
+    {members.map( async (member) =>
+    {
+      let {Content} = await render(member);
+      return (
+      <MemberContent
+        name_jp={member.data.name}
+        name_en={member.data.name_en??""}
+        history={member.data.history}
+        image={member.data.image??null}
+      >
+        <Content/>
+        </MemberContent>
+    )})}
 
   </div>
 </ContentLayout>

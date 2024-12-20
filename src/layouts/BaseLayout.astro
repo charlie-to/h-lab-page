@@ -5,9 +5,7 @@ export interface Props {
   description: string;
   ogImage?: string;
 }
-import { getRelativeLocaleUrl } from "astro:i18n";
 import { getLangFromUrl } from "../i18n/utils";
-import Header from "./Header.astro";
 
 const {
   title = "東北大学　細田研究室",
@@ -32,7 +30,7 @@ const siteURL = "https://localhost:4321";
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<html lang={lang} prefix="og: https://ogp.me/ns#" data-theme="cmyk">
+<html lang={lang} prefix="og: https://ogp.me/ns#" data-theme="emerald">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="max-image-preview:large" />
