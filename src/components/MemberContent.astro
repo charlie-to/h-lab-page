@@ -1,21 +1,21 @@
 ---
-import type {ImageMetadata} from "astro";
+import type { ImageMetadata } from "astro";
 export interface Props {
-    name_jp: string;
-    name_en: string;
-    degree?: string;
-    history?: {
-        year: number;
-        content: string[];
-    }[];
-    photo?: {
-        src: string;
-        alt: string;
-    };
-    image: ImageMetadata | null;
+  name_jp: string;
+  name_en: string;
+  degree?: string;
+  history?: {
+    year: number;
+    content: string[];
+  }[];
+  photo?: {
+    src: string;
+    alt: string;
+  };
+  image: ImageMetadata | null;
 }
-import {Image} from "astro:assets";
-const {name_jp, name_en, degree, history, photo,image} = Astro.props;
+import { Image } from "astro:assets";
+const { name_jp, name_en, degree, history, photo, image } = Astro.props;
 ---
 
 <div class="container mx-auto p-5">

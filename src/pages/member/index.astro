@@ -1,15 +1,15 @@
 ---
-import ContentLayout from "@/layouts/ContentLayout.astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
 import MemberContent from "@/components/MemberContent.astro";
-import { getCollection} from "astro:content";
-import {render} from "astro:content";
+import ContentLayout from "@/layouts/ContentLayout.astro";
 // page meta data
 const PageTitle = "メンバー";
 const PageDescription = "メンバー";
 
 // content data
 const members = await getCollection("members");
-let {Content} = await render(members[0]); // just for suppress type error
+const { Content } = await render(members[0]); // just for suppress type error
 ---
 
 <ContentLayout title={PageTitle} description={PageDescription} >
