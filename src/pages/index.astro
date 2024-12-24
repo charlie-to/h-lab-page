@@ -1,332 +1,323 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import NewsCard from "../components/news/NewsCard.astro";
 import Layout from "../layouts/BaseLayout.astro";
 import Header from "../layouts/Header.astro";
 import People from "./people_demo.jpg";
 
-const NavLinks = [
-  [{ label: "ホーム", href: "/index.html" }],
-  [{ label: "研究業績", href: "/publications/index.html" }],
-  [{ label: "産学連携", href: "/collaboration/index.html" }],
-  [
-    { label: "メンバー", href: "/member/index.html" },
-    { label: "細田千尋", href: "/aboutMe/index.html" },
-  ],
-  [{ label: "ニュース", href: "/news/index.html" }],
-  [{ label: "講演", href: "/lecture/index.html" }],
-  [{ label: "お問い合わせ", href: "/contact/index.html" }],
-];
+const news = await getCollection("news");
+const display_news = news.sort((a, b) => a.data.date - b.data.date).slice(0, 3);
 
 const posts_top_page = [1, 2, 3];
 ---
 
 <Layout title="細田研究室" description="東北大学細田研究室のHPです。">
-    <div slot="main" class="relative">
-        <!--navigation bar-->
-        <div id="nav" class="w-screen bg-white z-[10001] fixed">
-            <Header/>
-        </div>
-        <!-- navigation bar end -->
-        <!--steps-->
-        <div
-                class="h-screen w-4 p-3 container content-center my-auto z-[10000] fixed"
-        >
-            <div>
-                <ul
-                        class="container my-auto timeline timeline-compact timeline-vertical"
-                >
-                    <li>
-                        <div class="timeline-middle">
-                            <a href="#" class="step-link">
-                                <Icon name="mdi:checkbox-blank-circle" size="20"/>
-                            </a>
-                        </div>
-                        <div class="timeline-end h-12"></div>
-                        <hr/>
-                    </li>
-                    <li>
-                        <hr/>
-                        <div class="timeline-middle">
-                            <a href="#" class="step-link">
-                                <Icon name="mdi:checkbox-blank-circle" size="20"/>
-                            </a>
-                        </div>
-                        <div class="timeline-end h-12"></div>
-                        <hr/>
-                    </li>
-                    {
-                        posts_top_page.length === 0 ? (
-                                <li>
-                                    <hr/>
-                                    <div class="timeline-middle">
-                                        <a href="#" class="step-link">
-                                            <Icon name="mdi:checkbox-blank-circle" size="20"/>
-                                        </a>
-                                    </div>
-                                    <div class="timeline-end h-12"/>
-                                    <hr/>
-                                </li>
-                        ) : (
-                            posts_top_page.map((post, index) => (
-                                    <li>
-                                        <hr/>
-                                        <div class="timeline-middle">
-                                            <a href="#" class="step-link">
-                                                <Icon name="mdi:checkbox-blank-circle" size="20"/>
-                                            </a>
-                                        </div>
-                                        <div class="timeline-end h-12"/>
-                                        {index !== posts_top_page.length - 1 ?
-                                                <hr/> : ""}
-                                    </li>
-                            ))
-                        )
-                    }
-                </ul>
-            </div>
-        </div>
-        <!-- steps hover end-->
-
-        <!--contents-->
-        <div class="scroll-container absolute">
-
-            <!-- slide1 -->
-            <section class="slide bg-base-100">
-                <div class="h-full mx-auto my-auto py-12 relative">
-                    <div class="w-full h-full flex absolute">
-                        <Image
-                                src={People}
-                                alt="会議する人々の写真"
-                                class="object-fit brightness-110 blur-sm"
-                        />
-                    </div>
-                    <div class="absolute h-full w-full container content-center">
-                        <div class="text-center">
-                            <h1 class="text-2xl md:text-5xl font-bold">細田千尋 研究室</h1>
-                            <p class="my-4 text-base">
-                                東北大学大学院情報科学研究科 人間社会情報科学専攻
-                                学習心理情報学分野<br/>
-                                東北大学加齢医学研究所　脳科学研究部門　認知行動脳科学分野
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-
-                </div>
-            </section>
-            <!-- slide1 end -->
-
-            <!-- slide2 -->
-            <section class="">
-                <div class="slide h-full bg-base-200">
-                    <div class="container h-full mx-auto my-auto py-20 md:py-32">
-                        <div>
-                            <h2 class="text-2xl font-semibold text-primary text-center my-6">
-                                News
-                            </h2>
-                        </div>
-                        <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3 content-center">
-                            <NewsCard newsTitle="【WELL Community】クリスマスパーティ開催"
-                                      newsDescription="クリスマスパーティーを開催します。"/>
-                            <NewsCard newsTitle="【WELL Community】クリスマスパーティ開催"
-                                      newsDescription="クリスマスパーティーを開催します。"/>
-                            <NewsCard newsTitle="【WELL Community】クリスマスパーティ開催"
-                                      newsDescription="クリスマスパーティーを開催します。"/>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <!-- slide3 -->
-            <section class="">
-                <div class="slide h-full bg-base-200">
-                    <div class="container h-full mx-auto my-auto py-20 md:py-32">
-                        <p class="text-xl font-semibold text-primary text-center">
-                            脳科学 × 最先端テクノロジー <br/>
-                            ウェルビーイング
-                        </p>
-                        <p class="my-4 text-base px-3">
-                            多様な個性に合わせた目標達成支援によるウェルビーイング
-                            子ども・女性・高齢者を中心としたのウェルビーイング実現のためのコミュニティ
-                        </p>
-                        <p class="my-4 text-sm px-3">
-                            全ての人が、自分の目標を達成（能力獲得、学習の習熟、健康行動継続など）するための、行動変容と脳可塑性（脳の構造的変化）を促進するパーソナライズ支援法の機能要件解明と開発：多様な個性を脳の構造差や生体情報から予測・可視化する手法を確立していきます。
-                            脳構造指標には、MRIなどの脳機能イメージング装置から得られるマルチモーダルな画像（灰白質・皮質厚・ミエリン・FA・ICVF・ISOVF・ODI・トラクトメトリなど）を用いて、画像に対する機械学習や深層学習から予測モデルの構築を行います。
-                            これらの多次元脳情報と、生体情報・IoT技術・行動経済学理論をもとに、​個人最適化目標達成支援システムの研究開発を目指します。
-                            また、東北大学発の取り組みとして、少子高齢化社会における子ども・女性・高齢者を中心としたウェルビーイング向上のためのコミュニティの構築を目指しています。
-                            「子どもを社会全体で見守ることが重要」と思う人たちが集まり、学び合いや助け合いを通じて、参加者全員がウェルビーイング（心身の健康・幸福感・達成感）な状態になっていくようなコミュニティ「WELL
-                            Community(商標登録中)」を構築しております。
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- slide3 -->
-            <section class="">
-                <div class="scroll-container absolute">
-                    <section class="slide bg-base-100">
-                        <div class="container h-full mx-auto my-auto py-20 md:py-32">
-                            <p class="text-xl font-semibold text-primary text-center">
-                                ご自分の脳のこと、知りたくありませんか？科学的に信頼できる心理テストをぜひ！
-                            </p>
-                            <p class="my-4 text-base px-3">
-                                現在、細田研究室では、以下の心理テストをオンラインで実施しております。
-                                ご自身の性格、やる気、知能などを知りたい方、ぜひ下記から試してください。
-                            </p>
-                            <p class="my-4 text-sm px-3">
-                                MRIで脳を計測する実験も実施しております。ご興味ある方は下記サイトをご確認あわせのうえ、ご応募をお願いいたします（謝礼有、実験場所は都内）。
-                            </p>
-                        </div>
-                    </section>
-                </div>
-            </section>
-
-            <section class="">
-                <div class="slide h-full bg-base-200">
-                    <div class="container h-full mx-auto my-auto py-20 md:py-32">
-                        <p class="text-xl font-semibold text-primary text-center">
-                            募集のお知らせ
-                        </p>
-                        <p class="my-4 text-base px-3">
-                            大学院生、社会人大学院生、研究生、学振PD の募集
-                            現在、東北大学大学院 情報科学研究科および加齢医学研究所 認知行動脳科学研究分野細田研究室では、大学院生を募集しております。
-                        </p>
-                        <p class="my-4 text-sm px-3">
-                            脳科学、心理学、統計学、工学等、様々なバックグラウンドの方で、子供から大人まで個人それぞれの、能力、ウェルビーイング、知能、やる気、スポーツ、行動変容についての研究に興味があれば、お気軽にお問い合わせの欄
-                            からご連絡ください。
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-        </div>
+  <div slot="main" class="relative">
+    <!--navigation bar-->
+    <div id="nav" class="w-screen bg-white z-[10001] fixed">
+      <Header />
     </div>
+    <!-- navigation bar end -->
+    <!--steps-->
+    <div
+      class="h-screen w-4 p-3 container content-center my-auto z-[10000] fixed"
+    >
+      <div>
+        <ul
+          class="container my-auto timeline timeline-compact timeline-vertical"
+        >
+          <li>
+            <div class="timeline-middle">
+              <a href="#" class="step-link">
+                <Icon name="mdi:checkbox-blank-circle" size="20" />
+              </a>
+            </div>
+            <div class="timeline-end h-12"></div>
+            <hr />
+          </li>
+          <li>
+            <hr />
+            <div class="timeline-middle">
+              <a href="#" class="step-link">
+                <Icon name="mdi:checkbox-blank-circle" size="20" />
+              </a>
+            </div>
+            <div class="timeline-end h-12"></div>
+            <hr />
+          </li>
+          {
+            posts_top_page.length === 0 ? (
+              <li>
+                <hr />
+                <div class="timeline-middle">
+                  <a href="#" class="step-link">
+                    <Icon name="mdi:checkbox-blank-circle" size="20" />
+                  </a>
+                </div>
+                <div class="timeline-end h-12" />
+                <hr />
+              </li>
+            ) : (
+              posts_top_page.map((post, index) => (
+                <li>
+                  <hr />
+                  <div class="timeline-middle">
+                    <a href="#" class="step-link">
+                      <Icon name="mdi:checkbox-blank-circle" size="20" />
+                    </a>
+                  </div>
+                  <div class="timeline-end h-12" />
+                  {index !== posts_top_page.length - 1 ? <hr /> : ""}
+                </li>
+              ))
+            )
+          }
+        </ul>
+      </div>
+    </div>
+    <!-- steps hover end-->
+
+    <!--contents-->
+    <div class="scroll-container absolute">
+      <!-- slide1 -->
+      <section class="slide bg-base-100">
+        <div class="h-full mx-auto my-auto py-12 relative">
+          <div class="w-full h-full flex absolute">
+            <Image
+              src={People}
+              alt="会議する人々の写真"
+              class="object-fit brightness-110 blur-sm"
+            />
+          </div>
+          <div class="absolute h-full w-full container content-center">
+            <div class="text-center">
+              <h1 class="text-2xl md:text-5xl font-bold">細田千尋 研究室</h1>
+              <p class="my-4 text-base">
+                東北大学大学院情報科学研究科 人間社会情報科学専攻
+                学習心理情報学分野<br />
+                東北大学加齢医学研究所　脳科学研究部門　認知行動脳科学分野
+              </p>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </section>
+      <!-- slide1 end -->
+
+      <!-- slide2 -->
+      <section class="">
+        <div class="slide h-full bg-base-200">
+          <div class="container h-full mx-auto my-auto py-20 md:py-32">
+            <div>
+              <h2 class="text-2xl font-semibold text-primary text-center my-6">
+                News
+              </h2>
+            </div>
+
+            <div
+              class="grid gap-3 md:grid-cols-2 xl:grid-cols-3 content-center"
+            >
+              {
+                display_news.map((news) => (
+                  <NewsCard
+                    newsTitle={news.data.title}
+                    newsDescription={news.data.lead}
+                    newsId={news.id}
+                  />
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- slide3 -->
+      <section class="">
+        <div class="slide h-full bg-base-200">
+          <div class="container h-full mx-auto my-auto py-20 md:py-32">
+            <p class="text-xl font-semibold text-primary text-center">
+              脳科学 × 最先端テクノロジー <br />
+              ウェルビーイング
+            </p>
+            <p class="my-4 text-base px-3">
+              多様な個性に合わせた目標達成支援によるウェルビーイング
+              子ども・女性・高齢者を中心としたのウェルビーイング実現のためのコミュニティ
+            </p>
+            <p class="my-4 text-sm px-3">
+              全ての人が、自分の目標を達成（能力獲得、学習の習熟、健康行動継続など）するための、行動変容と脳可塑性（脳の構造的変化）を促進するパーソナライズ支援法の機能要件解明と開発：多様な個性を脳の構造差や生体情報から予測・可視化する手法を確立していきます。
+              脳構造指標には、MRIなどの脳機能イメージング装置から得られるマルチモーダルな画像（灰白質・皮質厚・ミエリン・FA・ICVF・ISOVF・ODI・トラクトメトリなど）を用いて、画像に対する機械学習や深層学習から予測モデルの構築を行います。
+              これらの多次元脳情報と、生体情報・IoT技術・行動経済学理論をもとに、​個人最適化目標達成支援システムの研究開発を目指します。
+              また、東北大学発の取り組みとして、少子高齢化社会における子ども・女性・高齢者を中心としたウェルビーイング向上のためのコミュニティの構築を目指しています。
+              「子どもを社会全体で見守ることが重要」と思う人たちが集まり、学び合いや助け合いを通じて、参加者全員がウェルビーイング（心身の健康・幸福感・達成感）な状態になっていくようなコミュニティ「WELL
+              Community(商標登録中)」を構築しております。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- slide3 -->
+      <section class="">
+        <div class="scroll-container absolute">
+          <section class="slide bg-base-100">
+            <div class="container h-full mx-auto my-auto py-20 md:py-32">
+              <p class="text-xl font-semibold text-primary text-center">
+                ご自分の脳のこと、知りたくありませんか？科学的に信頼できる心理テストをぜひ！
+              </p>
+              <p class="my-4 text-base px-3">
+                現在、細田研究室では、以下の心理テストをオンラインで実施しております。
+                ご自身の性格、やる気、知能などを知りたい方、ぜひ下記から試してください。
+              </p>
+              <p class="my-4 text-sm px-3">
+                MRIで脳を計測する実験も実施しております。ご興味ある方は下記サイトをご確認あわせのうえ、ご応募をお願いいたします（謝礼有、実験場所は都内）。
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="">
+        <div class="slide h-full bg-base-200">
+          <div class="container h-full mx-auto my-auto py-20 md:py-32">
+            <p class="text-xl font-semibold text-primary text-center">
+              募集のお知らせ
+            </p>
+            <p class="my-4 text-base px-3">
+              大学院生、社会人大学院生、研究生、学振PD の募集
+              現在、東北大学大学院 情報科学研究科および加齢医学研究所
+              認知行動脳科学研究分野細田研究室では、大学院生を募集しております。
+            </p>
+            <p class="my-4 text-sm px-3">
+              脳科学、心理学、統計学、工学等、様々なバックグラウンドの方で、子供から大人まで個人それぞれの、能力、ウェルビーイング、知能、やる気、スポーツ、行動変容についての研究に興味があれば、お気軽にお問い合わせの欄
+              からご連絡ください。
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 </Layout>
 
 <script>
-    import {gsap} from "gsap";
-    import {Observer} from "gsap/Observer";
+  import { gsap } from "gsap";
+  import { Observer } from "gsap/Observer";
 
-    gsap.registerPlugin(Observer);
+  gsap.registerPlugin(Observer);
 
-    const transition_speed = 200; //アニメーション速度
-    let panels: Element[] = gsap.utils.toArray(".slide"),
-        steps = gsap.utils.toArray(".step-link"),
-        panel_current_index = -1,
-        animating: boolean,
-        scrolling: boolean;
+  const transition_speed = 200; //アニメーション速度
+  let panels: Element[] = gsap.utils.toArray(".slide"),
+    steps = gsap.utils.toArray(".step-link"),
+    panel_current_index = -1,
+    animating: boolean,
+    scrolling: boolean;
 
-    // スクロールイベント監視
-    Observer.create({
-        target: window,
-        type: "wheel,touch,pointer",
-        wheelSpeed: -1,
-        onStop: () => {
-            scrolling = false;
-            console.log(panel_current_index);
-        },
-        onDown: () =>
-            !animating && !scrolling && goToSection(panel_current_index - 1, -1),
-        onUp: () =>
-            !animating && !scrolling && goToSection(panel_current_index + 1, 1),
-        tolerance: 400,
-        preventDefault: true,
+  // スクロールイベント監視
+  Observer.create({
+    target: window,
+    type: "wheel,touch,pointer",
+    wheelSpeed: -1,
+    onStop: () => {
+      scrolling = false;
+      console.log(panel_current_index);
+    },
+    onDown: () =>
+      !animating && !scrolling && goToSection(panel_current_index - 1, -1),
+    onUp: () =>
+      !animating && !scrolling && goToSection(panel_current_index + 1, 1),
+    tolerance: 400,
+    preventDefault: true,
+  });
+
+  // ステップクリックイベント
+  steps.forEach((v: any, i: number, a: any[]) => {
+    v.addEventListener("click", (e: any) => {
+      e.preventDefault();
+      if (i === panel_current_index) {
+        return;
+      }
+      goToSection(i, i > panel_current_index ? 1 : -1);
+    });
+  });
+
+  // セクション移動
+  function goToSection(index: number, direction: number) {
+    // make sure it's valid
+    if (index < 0) {
+      index = 0;
+      return;
+    }
+    if (index >= panels.length) {
+      index = panels.length;
+      return;
+    }
+    scrolling = true;
+    animating = true;
+
+    let tl = gsap.timeline({
+      defaults: { duration: 1.25, ease: "power1.inOut" },
+      onComplete: () => {
+        animating = false;
+      },
     });
 
-    // ステップクリックイベント
-    steps.forEach((v: any, i: number, a: any[]) => {
-        v.addEventListener("click", (e: any) => {
-            e.preventDefault();
-            if (i === panel_current_index) {
-                return;
-            }
-            goToSection(i, i > panel_current_index ? 1 : -1);
-        });
+    if (panel_current_index !== -1) {
+      gsap.set(panels[panel_current_index], { zIndex: 0 });
+      tl.to(panels[panel_current_index], {
+        yPercent: (-transition_speed / 10) * direction,
+      }).set(panels[panel_current_index], { autoAlpha: 0 });
+    }
+
+    gsap.set(panels[index], { autoAlpha: 1, zIndex: 1 });
+    tl.fromTo(
+      panels[index],
+      {
+        yPercent: transition_speed * direction,
+      },
+      { yPercent: 0 },
+      0,
+    );
+
+    ChangeStepColor(index);
+
+    panel_current_index = index;
+  }
+
+  // ステップの色変更
+  function ChangeStepColor(index: number) {
+    steps.forEach((v: any, i, a) => {
+      if (i <= index) {
+        v.classList.remove("text-gray-400");
+        v.classList.add("text-black");
+      } else {
+        v.classList.remove("text-black");
+        v.classList.add("text-gray-400");
+      }
     });
+  }
 
-    // セクション移動
-    function goToSection(index: number, direction: number) {
-        // make sure it's valid
-        if (index < 0) {
-            index = 0;
-            return;
-        }
-        if (index >= panels.length) {
-            index = panels.length;
-            return;
-        }
-        scrolling = true;
-        animating = true;
-
-        let tl = gsap.timeline({
-            defaults: {duration: 1.25, ease: "power1.inOut"},
-            onComplete: () => {
-                animating = false;
-            },
-        });
-
-        if (panel_current_index !== -1) {
-            gsap.set(panels[panel_current_index], {zIndex: 0});
-            tl.to(panels[panel_current_index], {
-                yPercent: (-transition_speed / 10) * direction,
-            }).set(panels[panel_current_index], {autoAlpha: 0});
-        }
-
-        gsap.set(panels[index], {autoAlpha: 1, zIndex: 1});
-        tl.fromTo(
-            panels[index],
-            {
-                yPercent: transition_speed * direction,
-            },
-            {yPercent: 0},
-            0,
-        );
-
-        ChangeStepColor(index);
-
-        panel_current_index = index;
-    }
-
-    // ステップの色変更
-    function ChangeStepColor(index: number) {
-        steps.forEach((v: any, i, a) => {
-            if (i <= index) {
-                v.classList.remove("text-gray-400");
-                v.classList.add("text-black");
-            } else {
-                v.classList.remove("text-black");
-                v.classList.add("text-gray-400");
-            }
-        });
-    }
-
-    // 初期状態は最初のセクションを表示
-    goToSection(0, 1);
-    scrolling = false;
+  // 初期状態は最初のセクションを表示
+  goToSection(0, 1);
+  scrolling = false;
 </script>
 
-
 <style is:inline>
-.scroll-container {
+  .scroll-container {
     height: 90vh;
     width: 100vh;
     top: 0;
     overflow-y: hidden;
-    }
+  }
 
-.slide {
+  .slide {
     height: 100vh;
     width: 100vw;
     top: 0;
     position: fixed;
     visibility: hidden;
     overflow-y: hidden;
-    }
-.body{
+  }
+  .body {
     overflow: hidden;
-    }
+  }
 </style>

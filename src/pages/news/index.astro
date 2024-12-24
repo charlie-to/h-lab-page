@@ -11,19 +11,56 @@ const news = await getCollection("news");
 ---
 
 <ContentLayout title={PageTitle} description={PageDescription}>
-    <div class="container mx-auto px-5 bg-neutral-content">
-        <h1 class="text-4xl font-bold">ニュース</h1>
-        <div class="mx-auto max-w-xl my-10">
-            <ul class="space-y-2">
-                {
-                    news.map((news) => (
-                            <li class="p-5">
-                                <span class="text-lg font-bold text-neutral mx-3">{news.data.date.toLocaleDateString()}</span>
-                                <span class="text-lg text-neutral">{news.data.title}</span>
-                            </li>
-                    ))
-                }
-            </ul>
-        </div>
+    <section class="bg-white">
+    <div class="container px-6 py-10 mx-auto">
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
+          ニュース
+        </h1>
+      </div>
+
+      <hr class="my-8 border-gray-200" />
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {
+          news.map((news) => (
+            <div>
+              <img
+                class="object-cover object-center w-full h-64 rounded-lg lg:h-80"
+                src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                alt=""
+              />
+
+              <div class="mt-8">
+                <!-- <span class="text-blue-500 uppercase">category</span> -->
+
+                <h1 class="mt-4 text-xl font-semibold text-gray-800">
+                  {news.data.title}
+                </h1>
+
+                <p class="mt-2 text-gray-500">
+                  {news.data.lead}
+                </p>
+
+                <div class="flex items-center justify-between mt-4">
+                  <div>
+                    <p class="text-sm text-gray-800">
+                      {news.data.date.toLocaleDateString()}
+                    </p>
+                  </div>
+
+                  <a
+                    href={`/news/detail/${news.id}`}
+                    class="inline-block text-blue-500 underline hover:text-blue-400"
+                  >
+                    詳細を読む
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
+  </section>
 </ContentLayout>
